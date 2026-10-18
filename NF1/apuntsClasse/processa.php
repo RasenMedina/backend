@@ -1,0 +1,1 @@
+Validacions de la vista (index.HTML)

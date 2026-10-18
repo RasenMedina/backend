@@ -1,0 +1,216 @@
+/*
+ * ESTILS.CSS
+ * ----------
+ * Aquest CSS és intencionadament senzill.
+ * La idea és que puguis entendre què fa cada regla.
+ */
+
+/* --------------------------------------------------------------
+   1. Estils generals de la pàgina
+   -------------------------------------------------------------- */
+
+/*
+ * box-sizing: border-box fa que el padding i el border
+ * es comptin dins de l'amplada de l'element.
+ */
+* {
+    box-sizing: border-box;
+}
+
+/*
+ * Estils del cos de la pàgina.
+ */
+body {
+    margin: 0;
+    padding: 30px;
+
+    /* Tipus de lletra senzill */
+    font-family: Arial, sans-serif;
+
+    /* Color de fons */
+    background-color: #f2f2f2;
+
+    /* Color del text */
+    color: #222;
+}
+
+
+/* --------------------------------------------------------------
+   2. Contenidor del formulari
+   -------------------------------------------------------------- */
+
+.contenidor {
+    /*
+     * Limitem l'amplada perquè el formulari no ocupi
+     * tota la pantalla.
+     */
+    max-width: 600px;
+
+    /*
+     * Centrem el contenidor horitzontalment.
+     */
+    margin: 0 auto;
+
+    /*
+     * Espai interior.
+     */
+    padding: 25px;
+
+    /*
+     * Fons blanc.
+     */
+    background-color: white;
+
+    /*
+     * Vora fina.
+     */
+    border: 1px solid #ccc;
+
+    /*
+     * Cantonades lleugerament arrodonides.
+     */
+    border-radius: 8px;
+}
+
+
+/* --------------------------------------------------------------
+   3. Títol
+   -------------------------------------------------------------- */
+
+h1 {
+    margin-top: 0;
+}
+
+
+/* --------------------------------------------------------------
+   4. Camps del formulari
+   -------------------------------------------------------------- */
+
+.camp {
+    /*
+     * Separem els diferents camps.
+     */
+    margin-bottom: 20px;
+}
+
+
+/* --------------------------------------------------------------
+   5. Labels
+   -------------------------------------------------------------- */
+
+label {
+    /*
+     * block fa que el label ocupi tota la línia.
+     */
+    display: block;
+
+    /*
+     * Separem el label del camp.
+     */
+    margin-bottom: 6px;
+
+    /*
+     * Text una mica més marcat.
+     */
+    font-weight: bold;
+}
+
+
+/* --------------------------------------------------------------
+   6. Inputs i textarea
+   -------------------------------------------------------------- */
+
+input,
+textarea {
+    /*
+     * Fem que ocupin tota l'amplada disponible.
+     */
+    width: 100%;
+
+    /*
+     * Espai interior.
+     */
+    padding: 10px;
+
+    /*
+     * Mida del text.
+     */
+    font-size: 16px;
+
+    /*
+     * Vora.
+     */
+    border: 1px solid #aaa;
+
+    /*
+     * Cantonades.
+     */
+    border-radius: 4px;
+}
+
+
+/* --------------------------------------------------------------
+   7. Botó
+   -------------------------------------------------------------- */
+
+button {
+    /*
+     * Espai interior del botó.
+     */
+    padding: 10px 18px;
+
+    /*
+     * Mida del text.
+     */
+    font-size: 16px;
+
+    /*
+     * El cursor canvia quan passem per sobre.
+     */
+    cursor: pointer;
+}
+
+
+/* --------------------------------------------------------------
+   8. Missatges
+   -------------------------------------------------------------- */
+
+.missatge-error {
+    /*
+     * Espai interior.
+     */
+    padding: 12px;
+
+    /*
+     * Espai inferior abans del formulari.
+     */
+    margin-bottom: 20px;
+
+    /*
+     * Fons clar per diferenciar el missatge.
+     */
+    background-color: #f8d7da;
+
+    /*
+     * Vora.
+     */
+    border: 1px solid #dc3545;
+}
+
+
+.missatge-exit {
+    /*
+     * Espai interior.
+     */
+    padding: 12px;
+
+    /*
+     * Fons diferent per indicar èxit.
+     */
+    background-color: #d1e7dd;
+
+    /*
+     * Vora.
+     */
+    border: 1px solid #198754;
+}
