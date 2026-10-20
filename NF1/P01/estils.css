@@ -1,0 +1,11 @@
+/* Estils independents de la lògica PHP. Paleta inspirada en RAS Football. */
+* { box-sizing: border-box; }
+body { margin: 0; background: #f1f5f9; color: #142b45; font-family: Arial, sans-serif; }
+.contenidor { max-width: 600px; margin: 55px auto; padding: 32px; background: white; border-radius: 12px; box-shadow: 0 8px 30px #16385c15; }
+h1 { font-size: 25px; margin-top: 0; }
+label { display: block; font-weight: bold; margin: 18px 0 6px; }
+input, textarea { width: 100%; padding: 11px; border: 1px solid #9caeba; border-radius: 6px; font: inherit; }
+button { width: 100%; padding: 12px; margin-top: 22px; background: #0b3d91; color: white; border: 0; border-radius: 7px; font-weight: bold; cursor: pointer; }
+button:hover { background: #3882f6; }
+.error { color: #ad1924; font-size: 14px; }
+.correcte { color: #176b3a; font-weight: bold; }

@@ -1,0 +1,10 @@
+<?php
+// COPIA AQUEST FITXER COM config.php I OM PLE LES DADES SMTP.
+// NO pugis mai config.php a GitHub.
+return [
+    'host' => 'smtp.gmail.com',
+    'port' => 587,
+    'usuari' => 'el_teu_correu@gmail.com',
+    'contrasenya' => 'CONTRASENYA_D_APLICACIO',
+    'destinatari' => 'el_teu_correu@gmail.com',
+];
