@@ -1,4 +1,3 @@
-
 <?php
 /**
  * FITXER: index.vista.php
@@ -120,6 +119,9 @@
                 $errors['nom']: Conté el missatge d'error associat al nom.
                 class="error": Permet aplicar estils CSS a l'error.
                 escapar(): Mostra el missatge com a text segur.
+                És igual:
+                    <?php echo escapar($dades['nom']); ?>
+                    <?= escapar($dades['nom']) ?>
             -->
             <?php if (isset($errors['nom'])): ?>
                 <p class="error">
