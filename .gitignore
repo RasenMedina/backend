@@ -1,11 +1,16 @@
+
 # ============================================================
 # BACKEND — Fitxers que Git no ha de pujar al repositori
 # ============================================================
 
 # Configuracions locals amb credencials SMTP o altres secrets.
-# Guardem les plantilles *.exemple.php, però no les credencials reals.
+# Conservem les plantilles com config.php.example,
+# però no els fitxers amb credencials reals.
+/NF1/P01/config.php
 config.local.php
-**/config.local.php
+
+# Fitxers d'entorn amb dades de configuració privades.
+# Les plantilles .env.example i .env.exemple sí que es versionen.
 .env
 .env.*
 !.env.example
@@ -13,8 +18,7 @@ config.local.php
 
 # Dependències instal·lades amb Composer (si el fem servir).
 # Els fitxers composer.json i composer.lock sí que es versionen.
-/vendor/
-**/vendor/
+vendor/
 
 # Fitxers temporals i registres de depuració.
 *.log
@@ -31,5 +35,6 @@ Desktop.ini
 # Fitxers locals de proves que continguin dades privades.
 *.local.sql
 
-# IMPORTANT: no ignorem els README.md ni els fitxers .gitkeep.
+# IMPORTANT:
+# No ignorem els README.md ni els fitxers .gitkeep.
 # Tampoc ignorem les carpetes P01, P02 o P03.
