@@ -1,4 +1,23 @@
 <?php
+/*
+ * FITXER: SMTP.php
+ * Aquest fitxer forma part de la llibreria externa PHPMailer.
+ * Conté la classe SMTP, encarregada de gestionar la comunicació amb un servidor de correu electrònic mitjançant el protocol SMTP.
+ * 
+ * FUNCIÓ DINS DE LA NOSTRA PRÀCTICA:
+ * Quan configurem PHPMailer per utilitzar SMTP, aquest fitxer proporciona els mètodes necessaris per establir la connexió
+ * amb el servidor, activar el xifratge TLS quan correspongui, autenticar l'usuari, transmetre el correu i tancar la connexió.
+ * També interpreta les respostes del servidor i permet detectar possibles errors durant el procés d'enviament.
+ * 
+ * RELACIÓ AMB PHPMailer.php:
+ * PHPMailer.php prepara el missatge i coordina l'enviament.
+ * SMTP.php gestiona la comunicació tècnica amb el servidor.
+ * 
+ * IMPORTANT:
+ * Aquest fitxer no és codi propi de la pràctica.
+ * Conservem el codi original de la llibreria i les dades dels seus autors i de la seva llicència.
+*/
+
 /**
  * PHPMailer RFC821 SMTP email transport class.
  * PHP Version 5.5.

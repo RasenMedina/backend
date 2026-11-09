@@ -294,8 +294,8 @@ function enviarCorreu(array $dades, array $config): bool {
      * error_log(): És una funció incorporada de PHP.
      * Permet registrar informació d'errors al sistema de registre configurat al servidor.
      * 
-     * $mail->ErrorInfo: Conté informació sobre l'error detectat per PHPMailer.
-     * Aquesta informació pot ser útil durant el desenvolupament.
+     * $e->getMessage(): Registrem el detall de l'error al servidor.
+     * No mostrem informació tècnica ni credencials al visitant.
      * 
      * IMPORTANT:
      * Els registres poden contenir dades tècniques sensibles. No s'han de publicar.
@@ -306,7 +306,7 @@ function enviarCorreu(array $dades, array $config): bool {
      * D'aquesta manera, index.php podrà mostrar un missatge genèric d'error a l'usuari.
     */
     catch (Exception $e) {
-        error_log('PHPMailer: ' . $mail->ErrorInfo);
+        error_log('PHPMailer: ' . $e->getMessage());
         return false;
     }
 }

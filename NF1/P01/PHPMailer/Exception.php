@@ -1,4 +1,28 @@
 <?php
+/*
+ * FITXER: Exception.php
+ * 
+ * Aquest fitxer forma part de la llibreria externa PHPMailer.
+ * Defineix una classe d'excepcions que hereta de la classe Exception pròpia de PHP i permet gestionar errors
+ * relacionats amb el funcionament de PHPMailer.
+ * 
+ * FUNCIÓ DINS DE LA NOSTRA PRÀCTICA:
+ * La funció enviarCorreu(), definida a funcions.php, utilitza un bloc try/catch per capturar possibles
+ * excepcions durant la configuració i l'enviament del correu.
+ * 
+ * Si es produeix una excepció de PHPMailer, podem consultar el missatge d'error, registrar-lo al servidor i retornar
+ * false per indicar que l'operació no s'ha completat.
+ * 
+ * RELACIÓ AMB ELS ALTRES FITXERS:
+ * PHPMailer.php prepara el missatge i coordina l'enviament.
+ * SMTP.php gestiona la comunicació amb el servidor SMTP.
+ * Exception.php defineix un tipus d'excepció utilitzat per comunicar determinats errors de la llibreria.
+ * 
+ * IMPORTANT:
+ * Aquest fitxer no és codi propi de la pràctica.
+ * Conservem el codi original de la llibreria i les dades dels seus autors i de la seva llicència.
+*/
+
 /**
  * PHPMailer Exception class.
  * PHP Version 5.5.

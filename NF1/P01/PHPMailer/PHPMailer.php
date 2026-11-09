@@ -1,4 +1,19 @@
 <?php
+/*
+ * FITXER: PHPMailer.php
+ * 
+ * Aquest fitxer forma part de la llibreria externa PHPMailer.
+ * Conté la classe principal que permet preparar i enviar missatges de correu electrònic des d'una aplicació PHP.
+ * 
+ * FUNCIÓ DINS DE LA NOSTRA PRÀCTICA:
+ * La funció enviarCorreu(), definida a funcions.php, crea un objecte PHPMailer i utilitza els seus mètodes
+ * per configurar el servidor SMTP, indicar el remitent, afegir el destinatari i enviar el missatge.
+ * 
+ * IMPORTANT:
+ * Aquest fitxer no és codi propi de la pràctica.
+ * Conservem el codi original de la llibreria i les dades dels seus autors i de la seva llicència.
+*/
+
 /**
  * PHPMailer - PHP email creation and transport class.
  * PHP Version 5.5.
