@@ -4,19 +4,26 @@ Repositori de pràctiques de l'assignatura **M0613 — Desenvolupament web en en
 
 ## Objectiu
 
-Aquest repositori recull les pràctiques que vaig desenvolupant durant el curs per aprendre PHP i els fonaments del desenvolupament web al servidor. He començat a posar-me al dia amb algunes activitats més tard del previst; per això, vull conservar cada pràctica en una carpeta independent que reflecteixi què havia implementat i quins coneixements havia adquirit en aquell moment.
+Aquest repositori recull les pràctiques i els exercicis que vaig fent durant el curs per aprendre PHP i el desenvolupament d'aplicacions web en entorn servidor.
 
-A més del resultat final, els commits de Git permeten consultar l'evolució del codi. Cada pràctica disposarà d'un README propi amb els objectius, els fitxers, les instruccions d'execució i les observacions.
+L'objectiu és posar en pràctica els conceptes treballats a classe, entendre com funciona el codi i anar millorant l'organització dels projectes.
+
+Cada pràctica té la seva pròpia carpeta i un fitxer `README.md` on explico els objectius, l'estructura dels fitxers, els conceptes treballats i les instruccions per executar-la.
+
+També utilitzo Git i GitHub per guardar els canvis i poder consultar l'evolució de cada activitat.
 
 ## Entorn de treball
 
-- **Llenguatge:** PHP, HTML i CSS.
-- **Editor:** Visual Studio Code.
-- **Entorn local:** XAMPP (Apache i, quan sigui necessari, MySQL/MariaDB).
-- **Control de versions:** Git i GitHub.
-- **Eines addicionals:** PHPMailer en les activitats que requereixin enviament de correu.
+Les eines i tecnologies que utilitzo són:
 
-## Organització
+- **Llenguatges:** PHP, HTML i CSS.
+- **Editor:** Visual Studio Code.
+- **Servidor local:** XAMPP amb Apache.
+- **Base de dades:** MySQL/MariaDB, quan la pràctica ho requereixi.
+- **Control de versions:** Git i GitHub.
+- **Llibreries:** PHPMailer per a l'enviament de correus electrònics.
+
+## Organització del repositori
 
 ```text
 Backend/
@@ -32,41 +39,87 @@ Backend/
         └── README.md
 ```
 
-L'estructura pot créixer amb altres nuclis formatius i activitats. Els fitxers de codi de cada pràctica s'afegiran dins de la carpeta corresponent.
+- `README.md`: informació general del repositori.
+- `.gitignore`: indica quins fitxers no s'han de pujar a GitHub, com ara configuracions privades i fitxers temporals.
+- `NF1/`: conté les activitats del primer nucli formatiu.
+- `apuntsClasse/`: apunts i exemples treballats a classe.
+- `P01/`, `P02/` i `P03/`: carpetes de les diferents pràctiques.
+
+L'estructura s'anirà ampliant a mesura que treballem nous continguts i activitats.
 
 ## Estat de les pràctiques
 
 | Pràctica | Tema | Estat |
 | --- | --- | --- |
-| [P01](NF1/P01/README.md) | Formulari de contacte amb PHP, validacions i PHPMailer | En desenvolupament i revisió |
-| [P02](NF1/P02/README.md) | Pendent de consultar l'enunciat oficial | Pendent |
-| [P03](NF1/P03/README.md) | Pendent de consultar l'enunciat oficial | Pendent |
+| [P01](NF1/P01/README.md) | Formulari de contacte amb PHP, validacions i PHPMailer | Completada i provada |
+| [P02](NF1/P02/README.md) | Pendent de revisar l'enunciat oficial | Pendent de revisió |
+| [P03](NF1/P03/README.md) | Pendent de revisar l'enunciat oficial | Pendent de revisió |
 
-**Nota:** Mentre no tingui accés als enunciats de P02 i P03 al Moodle, podré preparar exercicis basats en els apunts de classe. Aquests exercicis es revisaran posteriorment segons els requisits oficials, sense presentar-los com si ja fossin les pràctiques definitives.
+### P01 — Formulari de contacte amb PHP i PHPMailer
+
+En aquesta pràctica he creat un formulari amb els camps nom, correu electrònic i missatge.
+
+El formulari valida les dades amb PHP, mostra els errors quan algun camp és incorrecte i conserva els valors introduïts perquè l'usuari els pugui corregir.
+
+També he separat la lògica PHP de la vista HTML i he utilitzat PHPMailer per enviar els missatges mitjançant SMTP.
+
+He comprovat el funcionament de les validacions i l'enviament real de correus amb Gmail des de l'entorn local de XAMPP.
+
+La pràctica utilitza uns estils CSS amb colors blau, blanc i gris, inspirats en el projecte RAS Football.
+
+La documentació completa es troba al [README de la P01](NF1/P01/README.md).
+
+### P02 i P03
+
+Aquestes pràctiques estan pendents de revisar segons els enunciats oficials.
+
+Els fitxers i les explicacions de cada activitat s'aniran actualitzant a mesura que avanci el treball.
 
 ## Com executar les pràctiques
 
-1. Instal·lar i iniciar XAMPP.
-2. Situar aquest repositori dins de `C:\xampp\htdocs\PractiquesPHP\Backend`.
-3. Activar **Apache** al panell de XAMPP.
-4. Obrir al navegador la ruta corresponent, per exemple:
+Per executar els projectes en local utilitzo XAMPP.
 
-   `http://localhost/PractiquesPHP/Backend/NF1/P01/`
+1. Instal·lar XAMPP i tenir PHP disponible.
+2. Situar el repositori a la carpeta:
 
-5. Activar MySQL/MariaDB només en les pràctiques que utilitzin base de dades.
-6. Consultar el README de cada pràctica per veure si necessita configuració addicional.
+   `C:\xampp\htdocs\PractiquesPHP\Backend\`
+
+3. Iniciar **Apache** des del panell de control de XAMPP.
+4. Obrir al navegador la ruta de la pràctica que es vulgui executar.
+
+Per exemple, per accedir a la P01:
+
+`http://localhost/PractiquesPHP/Backend/NF1/P01/`
+
+5. Iniciar MySQL/MariaDB només si la pràctica necessita una base de dades.
+6. Consultar el `README.md` de cada pràctica per comprovar si cal alguna configuració addicional.
+
+### Configuracions privades
+
+Algunes pràctiques necessiten dades de configuració, com ara credencials per connectar-se a un servidor SMTP.
+
+Aquestes dades es guarden en fitxers locals que no es pugen a GitHub.
+
+Per exemple, la P01 inclou el fitxer `config.php.example`, que serveix de plantilla per crear el fitxer privat `config.php`.
+
+El `.gitignore` evita que aquest fitxer de configuració privat s'afegeixi accidentalment al repositori, sempre que no estigui versionat prèviament.
 
 ## Criteris de treball
 
-- Separar, sempre que sigui possible, la lògica PHP de la vista HTML.
-- Comentar el codi per explicar-ne la finalitat.
-- Validar les dades rebudes del navegador al servidor.
-- Evitar publicar contrasenyes, claus o credencials SMTP.
-- Fer commits descriptius per conservar l'evolució de cada activitat.
-- Revisar les solucions amb els enunciats oficials abans de donar-les per acabades.
+Durant les pràctiques intento seguir aquests criteris:
+
+- Separar la lògica PHP de la vista HTML quan sigui possible.
+- Organitzar el codi en diferents fitxers segons la seva funció.
+- Afegir comentaris que m'ajudin a entendre el funcionament del codi.
+- Validar les dades rebudes dels formularis des del servidor.
+- Mostrar les dades de manera segura per evitar que s'interpreti codi HTML introduït per l'usuari.
+- No publicar contrasenyes ni altres dades privades.
+- Utilitzar Git amb missatges de commit que expliquin els canvis realitzats.
+- Provar les funcionalitats abans de donar una pràctica per acabada.
+- Revisar els requisits dels enunciats de cada activitat.
 
 ## Autoria
 
 **Rasen Medina** — Alumne de 2n de DAW.
 
-Repositori acadèmic d'aprenentatge i seguiment de pràctiques.
+Repositori acadèmic per guardar les pràctiques i seguir el meu aprenentatge en desenvolupament web en entorn servidor.

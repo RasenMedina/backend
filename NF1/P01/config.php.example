@@ -1,5 +1,5 @@
 <?php
-// COPIA AQUEST FITXER COM config.php I OM PLE LES DADES SMTP.
+// COPIA AQUEST FITXER COM config.php I OMPLE LES DADES SMTP.
 // NO pugis mai config.php a GitHub.
 return [
     'host' => 'smtp.gmail.com',
