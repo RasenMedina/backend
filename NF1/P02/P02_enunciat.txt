@@ -1,0 +1,58 @@
+Pràctica 02 - Connexions PDO
+Oberta el dijous, 1 d’octubre 2026, 15:00
+Venciment: dijous, 15 d’octubre 2026, 23:59
+Objectius:
+
+Conèixer el tractament de les connexions amb PDO i consultes QUERY
+
+Treballar amb Prepared Statements
+
+Enunciat:
+
+·         Crear una BDD MySQL des de phpMyAdmin
+
+·         Crear una taula per a enregistrar articles on emmagatzemarem ID, titol, cos.
+
+·         Una vegada creada la taula d’articles s’ha de poder gestionar, és a dir, s’ha de poder inserir, modificar, esborrar i/o consultar els articles d’aquesta taula. Realitzar-ho mitjançant Prepared Statements!!
+
+ 
+
+Tingues en compte...:
+
+·         En cas de crear una BDD, has de lliurar l’esquema de la mateixa amb el següent format: Pt02_Nom_Cognom.sql (La P en majúscules i la t en minúscules)
+
+Aquest esquema ha de contenir la següent instrucció:
+
+CREATE DATABASE IF NOT EXISTS `PtXY_Nom_Cognom`;
+
+USE `PtXY_Nom_Cognom`;
+
+O potser us cal això:
+
+DROP DATABASE IF EXISTS PtXY_Nom_Cognom;
+
+La crida a la BDD ha de ser així:
+
+$nom_variable_connexio= ....dbname=pt02_nom_cognom', 'root', '');
+
+Compteu que és case-sensitive, per tant pt02 <> Pt02.
+
+ 
+
+Requeriments mínims per a superar la pràctica:
+
+El codi ha d’estar comentat.
+
+Ha de funcionar correctament les opcions Inserir, Modificar i Esborrar.
+
+Les cerques s’han de fer al menys per DNI.
+
+Els fitxers que genereu s’han de separar la lògica de la vista > MVC
+
+
+ Lliurament:
+
+·                    El nom del fitxer haurà de ser: Nom_Cognom_Pt02.rar/.zip/.7z
+
+·                   Cal fer un README tot especificant i/o detallant què heu fet a la pràctica. Justifiqueu els motius
+

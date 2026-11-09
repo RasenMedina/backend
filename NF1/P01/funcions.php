@@ -62,7 +62,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // 2. FUNCIÓ escapar()
-/** */
+/**
  * Converteix els caràcters especials d'una cadena en entitats HTML.
  * S'utilitza quan mostrem dades dins de l'HTML per evitar que determinats textos s'interpretin com a etiquetes o atributs HTML.
  * 
@@ -100,7 +100,7 @@ function escapar(string $text): string {
 }
 
 // 3. FUNCIÓ validarFormulari()
-/** */
+/**
  * Comprova que els camps del formulari compleixin les regles de validació establertes.
  * Aquesta funció rep les dades que el controlador ja ha recuperat i preparat.
  * 
@@ -176,7 +176,7 @@ function validarFormulari(array $dades): array {
 }
 
 // 4. FUNCIÓ enviarCorreu()
-/** */
+/**
  * Configura PHPMailer i intenta enviar un correu electrònic mitjançant SMTP.
  * 
  * PARÀMETRES:

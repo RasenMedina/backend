@@ -1,0 +1,64 @@
+Pràctica 01 - Creació d'un formulari
+Oberta el divendres, 13 de setembre 2024, 19:30
+Venciment: diumenge, 5 d’octubre 2025, 23:59
+[4/10]
+
+o   Crear un formulari per a afegir nom, adreça de correu i text.
+
+o   A l'hora d'enviar, si tot els camps són correctes, mostrarà un missatge que digui "Enviat correctament"  altrament ens informarà de quins camps estan buits.
+
+o   Crear l'estructura en HTML
+
+o   Crear estils CSS. Podeu fer servir els estils que us he deixat al moodle "estils.css"  o si no els que creieu convenient.
+
+[4/10]
+
+o   Validar les dades del formulari i enviar el correu amb PHP
+
+·         tenen contingut els camps a omplir?
+
+·         són les dades correctes als camps?
+
+·         s'han enviat les dades?
+
+·         comprovar l'estat dels errors. Hi ha errors?
+
+o   evitar l’injecció de codi
+
+o  enviar correu configurant php.ini [0,5/4]
+
+[2/10]
+
+Feu que el vostre formulari treballi amb PHPMailer.
+
+
+Requeriments mínims per a aprovar la pràctica:
+
+ 1.- validació de $POST (opció més correcte) o fent required als inputs de l’html i que surti un missatge dient “Enviat correctament”
+
+2.- Que el contingut de les caselles no s’esborri en cas d’haver algun error
+
+3.- diferenciar la lògica de la vista
+
+ 
+
+Baixa nota:
+
+1.- Treballar amb un sol fitxer php
+
+2.- No evitar l’injecció de codi
+
+Suspès:
+
+            1.- no posar el nom als fitxers
+
+            2.- no comentar el codi
+
+            3.- fora de termini
+
+            4.- copiar-se d’un company o deixar-se copiar
+
+Lliurament:
+
+·        El nom del fitxer haurà de ser: Nom_Cognom_Pt01.rar/.zip
+
