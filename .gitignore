@@ -4,9 +4,9 @@
 # ============================================================
 
 # Configuracions locals amb credencials SMTP o altres secrets.
-# Conservem les plantilles com config.php.example,
-# però no els fitxers amb credencials reals.
-/NF1/P01/config.php
+# Ignorem config.php en qualsevol carpeta del projecte.
+# Conservem les plantilles config.php.example.
+**/config.php
 config.local.php
 
 # Fitxers d'entorn amb dades de configuració privades.
