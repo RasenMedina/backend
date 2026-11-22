@@ -164,3 +164,28 @@ button:focus-visible {
     font-size: 14px;
 }
 
+
+/* Formulari d'eliminació dins de la taula. */
+.formulari-eliminar {
+    display: inline-block;
+    margin: 6px 0 0;
+}
+
+/* Botó per eliminar un jugador. */
+.boto-eliminar {
+    width: auto;
+    margin: 0;
+    padding: 7px 10px;
+    background: #b42332;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* Canvi de color quan passem el ratolí. */
+.boto-eliminar:hover {
+    background: #8f1724;
+}
+

@@ -91,7 +91,6 @@ function inserirJugador(array $dades): bool
     return $consulta->execute();
 }
 
-
 /**
  * Recupera els equips disponibles.
  * @return array Llista d'equips amb el seu ID i nom.
@@ -111,4 +110,102 @@ function obtenirEquips(): array
     // Retornem els equips al controlador.
     return $consulta->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+/**
+ * Busca un jugador a partir del seu identificador.
+ * @param int $id Identificador del jugador.
+ * @return array|false Dades del jugador o false si no existeix.
+ */
+function obtenirJugadorPerId(int $id): array|false
+{
+    // Connectem amb la base de dades.
+    $pdo = connectarBD();
+
+    // El paràmetre :id representa el jugador que busquem.
+    $sql = "SELECT * FROM jugadors WHERE id = :id";
+
+    // Preparem la consulta.
+    $consulta = $pdo->prepare($sql);
+
+    // Associem l'identificador com a número enter.
+    $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // Executem la consulta.
+    $consulta->execute();
+
+    // fetch() retorna una sola fila o false.
+    return $consulta->fetch(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Actualitza les dades d'un jugador existent.
+ * @param int $id Identificador del jugador.
+ * @param array $dades Dades validades del formulari.
+ * @return bool Indica si la consulta s'ha executat.
+ */
+function actualitzarJugador(int $id, array $dades): bool
+{
+    // Obtenim la connexió PDO.
+    $pdo = connectarBD();
+
+    // Modifiquem només el jugador identificat per :id.
+    // La clàusula WHERE és imprescindible.
+    $sql = "
+        UPDATE jugadors
+        SET
+            nom = :nom,
+            cognoms = :cognoms,
+            dni = :dni,
+            dorsal = :dorsal,
+            posicio = :posicio,
+            equip_id = :equip_id
+        WHERE id = :id
+    ";
+
+    // Preparem la consulta SQL.
+    $consulta = $pdo->prepare($sql);
+
+    // Associem els valors rebuts del controlador.
+    $consulta->bindValue(':nom', $dades['nom'], PDO::PARAM_STR);
+    $consulta->bindValue(':cognoms', $dades['cognoms'], PDO::PARAM_STR);
+    $consulta->bindValue(':dni', $dades['dni'], PDO::PARAM_STR);
+    $consulta->bindValue(':dorsal', (int) $dades['dorsal'], PDO::PARAM_INT);
+    $consulta->bindValue(':posicio', $dades['posicio'], PDO::PARAM_STR);
+    $consulta->bindValue(':equip_id', (int) $dades['equip_id'], PDO::PARAM_INT);
+    $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // Executem la consulta preparada.
+    return $consulta->execute();
+}
+
+
+/**
+ * Elimina un jugador de la base de dades a partir del seu ID.
+ * @param int $id Identificador del jugador que volem eliminar.
+ * @return bool Retorna true si s'ha eliminat un jugador.
+ */
+function eliminarJugador(int $id): bool
+{
+    // Obtenim la connexió PDO amb MySQL.
+    $pdo = connectarBD();
+
+    // Preparem la consulta SQL.
+    // WHERE és imprescindible per eliminar només un jugador.
+    $sql = "DELETE FROM jugadors WHERE id = :id";
+
+    // prepare() crea la consulta sense inserir-hi directament l'ID.
+    $consulta = $pdo->prepare($sql);
+
+    // Associem el valor de l'ID com un número enter.
+    $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+
+    // Executem la consulta preparada.
+    $consulta->execute();
+
+    // rowCount() indica quantes files s'han eliminat.
+    // Si retorna 0, no existia cap jugador amb aquest ID.
+    return $consulta->rowCount() === 1;
+}
+
 

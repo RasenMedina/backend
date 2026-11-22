@@ -36,6 +36,7 @@
                         <th>Dorsal</th>
                         <th>Posició</th>
                         <th>Equip</th>
+                        <th>Accions</th>
                     </tr>
                 </thead>
 
@@ -68,6 +69,46 @@
                             <td>
                                 <?= escapar($jugador['equip'] ?? 'Sense equip') ?>
                             </td>
+
+                            <td>
+                                <!-- Enllaç per modificar les dades del jugador. -->
+                                <a href="index.php?editar=<?= (int) $jugador['id'] ?>">
+                                    Editar
+                                </a>
+
+                                <!-- Formulari independent per eliminar el jugador. -->
+                                <form
+                                    action="index.php"
+                                    method="POST"
+                                    class="formulari-eliminar"
+                                    onsubmit="return confirm('Segur que vols eliminar aquest jugador?');"
+                                >
+                                    <!-- Indiquem l'acció que ha d'executar el controlador. -->
+                                    <input
+                                        type="hidden"
+                                        name="accio"
+                                        value="eliminar"
+                                    >
+
+                                    <!-- Identificador del jugador seleccionat. -->
+                                    <input
+                                        type="hidden"
+                                        name="id"
+                                        value="<?= (int) $jugador['id'] ?>"
+                                    >
+
+                                    <!-- Token de seguretat per validar la petició. -->
+                                    <input
+                                        type="hidden"
+                                        name="csrf_token"
+                                        value="<?= escapar($_SESSION['csrf_token']) ?>"
+                                    >
+
+                                    <button type="submit" class="boto-eliminar">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
 
                     <?php endforeach; ?>
@@ -81,10 +122,15 @@
 
         <section class="formulari-jugador">
 
-            <h2>Afegir un jugador</h2>
+            <h2>
+                <?= $modeEdicio ? 'Modificar jugador' : 'Afegir un jugador' ?>
+            </h2>
 
-            <p>Introdueix les dades del nou jugador.</p>
-
+            <p>
+                <?= $modeEdicio
+                    ? 'Modifica les dades del jugador seleccionat.'
+                    : 'Introdueix les dades del nou jugador.' ?>
+            </p>
             <?php if ($missatge !== ''): ?>
                 <p class="correcte"><?= escapar($missatge) ?></p>
             <?php endif; ?>
@@ -94,6 +140,23 @@
             <?php endif; ?>
 
             <form action="index.php" method="POST">
+
+                
+                <!-- Indiquem al controlador quina operació volem fer. -->
+                <input
+                    type="hidden"
+                    name="accio"
+                    value="<?= $modeEdicio ? 'editar' : 'crear' ?>"
+                >
+
+                <!-- Si estem editant, enviem l'ID del jugador. -->
+                <?php if ($modeEdicio): ?>
+                    <input
+                        type="hidden"
+                        name="id"
+                        value="<?= (int) $idEdicio ?>"
+                    >
+                <?php endif; ?>
 
                 <label for="nom">Nom</label>
                 <input
@@ -179,14 +242,18 @@
                     <p class="error"><?= escapar($errors['equip_id']) ?></p>
                 <?php endif; ?>
 
-                <button type="submit">Afegir jugador</button>
+                
+                <button type="submit">
+                    <?= $modeEdicio ? 'Desar canvis' : 'Afegir jugador' ?>
+                </button>
 
+                <?php if ($modeEdicio): ?>
+                    <p>
+                        <a href="index.php">Cancel·lar edició</a>
+                    </p>
+                <?php endif; ?>
             </form>
-
         </section>
-
-
     </main>
-
 </body>
 </html>
