@@ -147,7 +147,21 @@ if (
         true
     )
 ) {
+    // Recuperem el token enviat pel formulari.
+    // Si no existeix, utilitzem una cadena buida.
+    $tokenRebut = $_POST['csrf_token'] ?? '';
 
+    // Comprovem que sigui una cadena i que coincideixi amb el token que tenim guardat a la sessió.
+    if (
+        !is_string($tokenRebut)
+        || !hash_equals(
+            $_SESSION['csrf_token'] ?? '',
+            $tokenRebut
+        )
+    ) {
+        // Si el token no és vàlid, no permetrem desar.
+        $error = 'La petició no és vàlida. Torna-ho a provar.';
+    }
 
     // El formulari indica si volem crear o modificar.
     $accio = $_POST['accio'] ?? 'crear';

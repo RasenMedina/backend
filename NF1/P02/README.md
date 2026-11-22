@@ -1,139 +1,161 @@
-# P02 — Connexions PDO amb MySQL
+# P02 — Connexions PDO i gestió de jugadors
 
-## Objectiu
+## Projecte RAS Football
 
-En aquesta pràctica treballo la connexió entre PHP i una base de dades MySQL utilitzant **PDO (PHP Data Objects)**.
+**Pràctica:** P02 — Connexions PDO  
+**Assignatura:** Desenvolupament Web en Entorn Servidor (DAW)  
+**Alumne:** Rasen Medina  
+**Tecnologies:** PHP, MySQL, PDO, HTML, CSS i phpMyAdmin
 
-És una continuació del projecte iniciat a la P01. La idea és anar ampliant RAS Football amb noves funcionalitats i conservar cada pràctica com una versió del projecte en aquell moment.
+## 1. Descripció
 
-L'objectiu principal és aprendre a consultar i gestionar dades des de PHP, utilitzant **Prepared Statements** i separant la lògica de les vistes amb el patró **MVC**.
+En aquesta pràctica treballem la connexió entre PHP i una base de dades MySQL utilitzant PDO (*PHP Data Objects*).
 
-## Adaptació de la pràctica
+Hem desenvolupat una aplicació de gestió de jugadors de futbol, anomenada **RAS Football**, seguint una estructura basada en el patró MVC (*Model-Vista-Controlador*).
 
-L'enunciat original proposa gestionar una taula d'articles. En el meu cas, he adaptat la base de dades a la temàtica de RAS Football, amb l'autorització del professor.
+L'aplicació permet consultar, afegir, modificar i eliminar jugadors.
 
-En lloc de treballar amb articles, utilitzaré dades relacionades amb el futbol. Principalment, implementaré les operacions de consulta, inserció, modificació i eliminació de jugadors.
+## 2. Objectius
 
-Aquesta adaptació permet treballar els mateixos conceptes de PDO i SQL i, alhora, continuar desenvolupant el projecte.
+- Crear una base de dades MySQL.
+- Connectar PHP amb MySQL mitjançant PDO.
+- Utilitzar consultes SQL preparades (*prepared statements*).
+- Recuperar i mostrar informació de la base de dades.
+- Implementar les operacions CRUD.
+- Separar la lògica, les dades i la presentació amb MVC.
+- Validar les dades dels formularis.
+- Aplicar mesures bàsiques de seguretat.
 
-## Conceptes que treballo
+## 3. Base de dades
 
-- Creació de bases de dades i taules amb MySQL.
-- Gestió de dades des de phpMyAdmin.
-- Claus primàries i claus foranes.
-- Relacions entre taules.
-- Consultes SQL amb `SELECT`, `INSERT`, `UPDATE` i `DELETE`.
-- Consultes entre taules amb `JOIN`.
-- Connexió a MySQL amb PDO.
-- Consultes preparades amb `prepare()` i `execute()`.
-- Recuperació de resultats amb `fetchAll()`.
-- Gestió d'errors amb `try/catch` i `PDOException`.
-- Separació entre model, vista i controlador (MVC).
-- Validació de dades i protecció davant d'injeccions SQL.
+La base de dades utilitzada és `Pt02_Rasen_Medina`.
 
-Alguns d'aquests conceptes ja s'han treballat i d'altres s'aniran incorporant durant el desenvolupament de la pràctica.
+El fitxer `database/Pt02_Rasen_Medina.sql` conté les instruccions per crear la base de dades i les quatre taules:
 
-## Base de dades
+| Taula | Finalitat |
+|---|---|
+| `equips` | Emmagatzema els equips de futbol. |
+| `jugadors` | Emmagatzema les dades dels jugadors. |
+| `entrenadors` | Emmagatzema els entrenadors. |
+| `users` | Defineix l'estructura dels usuaris per a futures funcionalitats. |
 
-La base de dades s'anomena `pt02_rasen_medina` i conté quatre taules:
+La taula `jugadors` es relaciona amb `equips` mitjançant la clau forana `equip_id`.
 
-| Taula | Funció |
-| --- | --- |
-| `users` | Emmagatzemar els comptes d'usuari de l'aplicació. |
-| `equips` | Guardar la informació dels equips de futbol. |
-| `jugadors` | Guardar els jugadors i l'equip al qual pertanyen. |
-| `entrenadors` | Guardar els entrenadors i l'equip al qual pertanyen. |
+La taula `users` està creada, però en aquesta fase no hem implementat el registre ni l'inici de sessió.
 
-Les taules `jugadors` i `entrenadors` es relacionen amb `equips` mitjançant el camp `equip_id`.
+## 4. Estructura del projecte
 
-La taula `users` queda preparada per a futures funcionalitats relacionades amb els comptes d'usuari.
-
-L'esquema de la base de dades es guarda a:
-
-`database/Pt02_Rasen_Medina.sql`
-
-Aquest fitxer permet recrear l'estructura de les taules des de phpMyAdmin.
-
-## Organització dels fitxers
-
-La P02 conserva els fitxers de la pràctica anterior i incorpora una carpeta per treballar amb la base de dades.
+Els fitxers principals de la pràctica són:
 
 ```text
 P02/
-├── README.md
+├── css/
+│   └── estils.css
+├── database/
+│   ├── connexio.php
+│   ├── prova_connexio.php
+│   └── Pt02_Rasen_Medina.sql
+├── gestio/
+│   ├── config/
+│   │   └── connexio.php
+│   ├── controllers/
+│   │   └── JugadorController.php
+│   ├── models/
+│   │   └── JugadorModel.php
+│   ├── views/
+│   │   └── jugadors.vista.php
+│   └── index.php
+├── PHPMailer/
+├── config.php.example
+├── funcions.php
 ├── index.php
 ├── index.vista.php
-├── funcions.php
-├── estils.css
-├── config.php.example
-├── PHPMailer/
-├── database/
-│   ├── Pt02_Rasen_Medina.sql
-│   ├── connexio.php
-│   └── prova_connexio.php
-└── gestio/
-    ├── index.php
-    ├── config/
-    ├── controllers/
-    ├── models/
-    └── views/
+└── README.md
 ```
 
-### Fitxers principals
+## 5. Funcionament del patró MVC
 
-- `database/Pt02_Rasen_Medina.sql`: conté les instruccions SQL per crear la base de dades.
-- `database/connexio.php`: defineix la funció `connectarBD()`, que retorna un objecte PDO.
-- `database/prova_connexio.php`: comprova la connexió i mostra les taules disponibles.
-- `gestio/`: carpeta destinada a implementar la gestió de jugadors seguint MVC.
+### Model
 
-Els fitxers del formulari de contacte i de PHPMailer es conserven de la P01.
+El fitxer `gestio/models/JugadorModel.php` conté les funcions que interactuen amb la base de dades mitjançant PDO.
 
-La carpeta `gestio/` encara està en desenvolupament i la seva estructura pot canviar a mesura que avancem.
+S'encarrega de consultar, inserir, actualitzar i eliminar registres.
 
-## Execució local
+### Vista
 
-Per executar la pràctica utilitzo XAMPP.
+El fitxer `gestio/views/jugadors.vista.php` genera la interfície HTML.
 
-1. Situar el projecte a `C:\xampp\htdocs\PractiquesPHP\Backend\NF1\P02\`.
-2. Iniciar **Apache** i **MySQL** des de XAMPP.
-3. Obrir phpMyAdmin a `http://localhost/phpmyadmin/`.
-4. Crear la base de dades executant el fitxer `database/Pt02_Rasen_Medina.sql`.
-5. Comprovar la connexió PDO obrint:
+Mostra el llistat de jugadors, els formularis i els missatges de confirmació o error.
 
-   `http://localhost/PractiquesPHP/Backend/NF1/P02/database/prova_connexio.php`
+### Controlador
 
-Si la connexió funciona, apareix el missatge **«Connexió PDO correcta!»** i els noms de les quatre taules.
+El fitxer `gestio/controllers/JugadorController.php` processa les peticions del navegador.
 
-La configuració del formulari de contacte es manté separada en un fitxer local `config.php`, que no s'ha de publicar al repositori.
+Recupera i valida les dades dels formularis, crida les funcions del model i prepara la informació que necessita la vista.
 
-## Proves realitzades
+### Punt d'entrada
 
-Fins ara he comprovat que:
+El fitxer `gestio/index.php` inicia la sessió, prepara el token CSRF i carrega el controlador.
 
-- [x] La base de dades es crea correctament a phpMyAdmin.
-- [x] Les quatre taules existeixen.
-- [x] PHP es connecta correctament a MySQL mitjançant PDO.
-- [x] Es poden recuperar els noms de les taules amb `prepare()`, `execute()` i `fetchAll()`.
-- [x] S'han inserit dos equips i tres jugadors de prova a MySQL.
-- [ ] Es poden consultar i mostrar els jugadors des de la interfície PHP.
-- [ ] Es poden inserir jugadors des d'un formulari.
-- [ ] Es poden modificar jugadors.
-- [ ] Es poden esborrar jugadors.
-- [ ] Es poden cercar jugadors per DNI.
-- [ ] S'ha revisat el funcionament complet de la pràctica.
+## 6. Operacions CRUD implementades
 
-## Decisions de desenvolupament
+| Operació | Funcionalitat | Estat |
+|---|---|---|
+| CREATE | Afegir un jugador nou | Implementada i provada |
+| READ | Mostrar els jugadors i els seus equips | Implementada i provada |
+| UPDATE | Modificar les dades d'un jugador | Implementada i provada |
+| DELETE | Eliminar un jugador | Implementada i provada |
 
-He decidit conservar una carpeta independent per a cada pràctica perquè així puc consultar com ha anat evolucionant el projecte.
+Les operacions utilitzen PDO i consultes preparades.
 
-Per a la base de dades he separat equips, jugadors i entrenadors en diferents taules per evitar repetir informació i poder relacionar els registres mitjançant claus foranes.
+Després de crear, modificar o eliminar un jugador correctament, l'aplicació redirigeix el navegador i mostra un missatge de confirmació.
 
-També he separat la connexió PDO en un fitxer propi, `connexio.php`, per poder reutilitzar-la en diferents consultes sense haver d'escriure sempre el mateix codi.
+## 7. Validació i seguretat
 
-Durant la pràctica aniré afegint comentaris als fitxers PHP per entendre què fa cada instrucció i poder repassar-la de cara a l'examen.
+Hem incorporat diverses mesures de seguretat:
 
-## Estat actual
+- Validació dels camps obligatoris.
+- Comprovació dels identificadors numèrics.
+- Restricció de longitud dels camps.
+- Consultes preparades amb PDO per evitar la inserció directa de dades de l'usuari a l'SQL.
+- Ús de la funció `escapar()` per mostrar dades de manera segura a l'HTML.
+- Protecció CSRF dels formularis de creació, modificació i eliminació.
+- Confirmació abans d'eliminar un jugador.
+- Registre dels errors tècnics al servidor.
 
-**En desenvolupament.**
+Aquestes mesures formen part de la seguretat bàsica de la pràctica i no substitueixen una auditoria completa de seguretat.
 
-La base de dades està creada, la connexió PDO funciona i ja hi ha dades de prova. El següent pas és mostrar els jugadors des de PHP i implementar les operacions CRUD amb Prepared Statements.
+## 8. Execució en local
+
+Per executar la pràctica:
+
+1. Iniciar Apache i MySQL des de XAMPP.
+2. Crear la base de dades important el fitxer `database/Pt02_Rasen_Medina.sql` amb phpMyAdmin.
+3. Configurar la connexió local amb MySQL.
+4. Obrir al navegador:
+
+`http://localhost/PractiquesPHP/Backend/NF1/P02/gestio/`
+
+La configuració local que contingui credencials no s'ha de publicar al repositori.
+
+## 9. Proves realitzades
+
+Hem comprovat que:
+
+- La connexió amb MySQL funciona.
+- Es poden recuperar els jugadors de la base de dades.
+- Es mostra el nom de l'equip corresponent a cada jugador.
+- Es poden inserir jugadors nous.
+- Es poden modificar jugadors existents.
+- Es poden eliminar jugadors després de confirmar l'acció.
+- Els formularis mostren missatges de confirmació.
+- El sistema detecta errors com els DNI duplicats.
+- Els fitxers PHP revisats superen la comprovació de sintaxi.
+
+## 10. Conclusions
+
+Amb aquesta pràctica hem après a treballar amb bases de dades relacionals des de PHP mitjançant PDO.
+
+També hem aplicat el patró MVC per separar responsabilitats i hem desenvolupat un CRUD funcional de jugadors.
+
+La pràctica representa una nova fase del projecte respecte de la P01, incorporant persistència de dades, consultes SQL i gestió de registres.

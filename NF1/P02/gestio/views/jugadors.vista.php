@@ -141,7 +141,17 @@
 
             <form action="index.php" method="POST">
 
-                
+                <!--
+                    Token CSRF del formulari de creació i modificació.
+                    El valor es genera a gestio/index.php i es guarda a la sessió del servidor.
+                    En enviar el formulari, el controlador comprovarà que aquest token coincideix amb el de la sessió.
+                -->
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="<?= escapar($_SESSION['csrf_token']) ?>"
+                >    
+
                 <!-- Indiquem al controlador quina operació volem fer. -->
                 <input
                     type="hidden"

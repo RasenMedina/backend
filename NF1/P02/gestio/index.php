@@ -22,7 +22,8 @@ if (session_status() === PHP_SESSION_NONE) {
 // 2. CREAR EL TOKEN CSRF
 // ---------------------------------------------------------
 
-// El token CSRF serveix per comprovar que les peticions d'eliminació provenen del formulari de la nostra aplicació.
+// El token CSRF serveix per protegir les peticions POST contra atacs de falsificació de peticions entre llocs (CSRF).
+// El servidor comprova que el token rebut coincideixi amb el que hem guardat a la sessió de l'usuari.
 // Només el creem si encara no existeix a la sessió.
 if (empty($_SESSION['csrf_token'])) {
 
