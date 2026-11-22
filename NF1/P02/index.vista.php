@@ -63,7 +63,7 @@
         rel="stylesheet": Indica que el fitxer és un full d'estils CSS.
         href="estils.css": Indica la ruta relativa del fitxer CSS.
     -->
-    <link rel="stylesheet" href="estils.css">
+    <link rel="stylesheet" href="css/estils.css">
 </head>
 
 <!-- body: Conté tots els elements visibles de la pàgina. -->

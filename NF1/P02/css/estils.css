@@ -107,3 +107,60 @@ button:focus-visible {
         font-size: 22px;
     }
 }
+
+
+/* Taula de jugadors de RAS Football */
+.taula-jugadors {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    font-size: 14px;
+}
+
+.taula-jugadors th,
+.taula-jugadors td {
+    padding: 12px;
+    border-bottom: 1px solid #d6e0ea;
+    text-align: left;
+}
+
+.taula-jugadors th {
+    background: #0b3d91;
+    color: white;
+}
+
+.taula-jugadors tbody tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+.taula-jugadors tbody tr:hover {
+    background: #e2eaf5;
+}
+
+
+/* Formulari per afegir jugadors */
+.formulari-jugador {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid #d6e0ea;
+}
+
+.formulari-jugador h2 {
+    color: #0b3d91;
+    font-size: 22px;
+}
+
+.formulari-jugador select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #9caeba;
+    border-radius: 6px;
+    background: white;
+    font: inherit;
+}
+
+.formulari-jugador .error {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
